@@ -2,7 +2,7 @@
 
 namespace DAL.Migrations
 {
-    public partial class Initial : Migration
+    public partial class @string : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,7 @@ namespace DAL.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-              
+
         }
     }
 }

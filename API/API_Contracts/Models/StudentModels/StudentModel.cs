@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace DAL.Entities
+namespace API_Contracts.Models.StudentModels
 {
-    public class StudentEntity
+    public class StudentModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
     }
 }

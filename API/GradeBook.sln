@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "Project\API.csproj", "{B033F24F-4A87-40BC-AEDF-E4A6E9F736AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{016C95FA-648A-48D9-86BB-DBE7E9DFBAD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{016C95FA-648A-48D9-86BB-DBE7E9DFBAD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{FBF525B0-6B10-4088-9743-579D4AAC60AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{FBF525B0-6B10-4088-9743-579D4AAC60AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_Contracts", "API_Contracts\API_Contracts.csproj", "{D69A7526-A033-4C2D-BED7-E3CD5DB3B4FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{FBF525B0-6B10-4088-9743-579D4AAC60AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBF525B0-6B10-4088-9743-579D4AAC60AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBF525B0-6B10-4088-9743-579D4AAC60AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D69A7526-A033-4C2D-BED7-E3CD5DB3B4FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D69A7526-A033-4C2D-BED7-E3CD5DB3B4FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D69A7526-A033-4C2D-BED7-E3CD5DB3B4FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D69A7526-A033-4C2D-BED7-E3CD5DB3B4FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,40 +2,53 @@
 using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+
+/// <summary>
+/// for now only CRUD operations 
+/// </summary>
+
 
 namespace DAL.Repositories
 {
     public class StudentRepository : IRepository<StudentEntity>
     {
-        private readonly ApplicationContext _identityDbContext;
+        private readonly DbSet<StudentEntity> _dbSet;
 
         public StudentRepository(ApplicationContext context)
         {
-            _identityDbContext= context;
+            _dbSet= context.Set<StudentEntity>();
         }
 
         public async Task<StudentEntity> CreateAsync(StudentEntity item)
         {
-           return (await _identityDbContext.Students.AddAsync(item)).Entity;
+           return (await _dbSet.AddAsync(item)).Entity;
         }
-
+        
         public void Delete(StudentEntity item)
         {
-            throw new NotImplementedException();
+            _dbSet.Remove(item);
         }
 
-        public Task ReadAsync(string Id)
+        public async Task<StudentEntity> FindAsync(string Id)
         {
-            throw new NotImplementedException();
+            return await _dbSet.FindAsync(Id);
+        }
+
+        public IQueryable<StudentEntity> GetAllAsQueryable()
+        {
+            return _dbSet;
         }
 
         public void Update(StudentEntity item)
         {
-            throw new NotImplementedException();
+            _dbSet.Update(item);
         }
     }
 }

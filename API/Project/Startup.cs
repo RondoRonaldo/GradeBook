@@ -2,7 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using BLL.Infrastructure;
+using BLL.Interfaces;
+using BLL.Services;
 using DAL.EF;
+using DAL.Interfaces;
+using DAL.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +18,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+
+
 
 namespace Project
 {
@@ -30,26 +38,54 @@ namespace Project
             services.AddDbContext<ApplicationContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
+          //  ConfigureCors(services);
+            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IUnitOfWork, IdentityUnitOfWork>();
+            services.AddMvc();
+            var mappingConfig = new MapperConfiguration(mc => { mc.AddProfile(new AutoMapperProfile()); });
+            var mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);            
+        
             
+
+        }
+
+        private void ConfigureCors(IServiceCollection services)
+        {
+            services.AddCors(options =>
+                options.AddPolicy("AllowOrigins",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:443")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader().
+                            AllowCredentials().
+                            WithExposedHeaders();
+                    }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
+        
+
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
+          
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
+            {              
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action}/{id?}");
             });
         }
     }

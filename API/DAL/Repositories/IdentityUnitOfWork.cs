@@ -4,10 +4,17 @@ using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+
+/// <summary>
+/// basic UoW with student repository. lacks other repositories
+/// </summary>
+
 
 namespace DAL.Repositories
 {
-    class IdentityUnitOfWork : IUnitOfWork,IDisposable
+
+    public class IdentityUnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly ApplicationContext _applicationContext;
 
@@ -18,13 +25,16 @@ namespace DAL.Repositories
 
         }
 
-        
+        public async Task SaveAsync()
+        {
+            await _applicationContext.SaveChangesAsync();
+        }
 
 public IRepository<StudentEntity> StudentRepository { get; }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
     }
 }
